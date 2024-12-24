@@ -1,0 +1,23 @@
+---
+import Submit from '../components/form/Submit.astro';
+import Layout from '../layouts/Layout.astro';
+import Details from '../partials/Details.astro';
+---
+
+<Layout
+	title="Status"
+	x-data="hsDetails"
+	data-username="$(username)"
+	data-login-by="$(login-by)"
+	data-session="$(session-time-left)"
+>
+	<meta http-equiv="refresh" content="$(refresh-timeout-secs)" slot="head" />
+
+	<form action="$(link-logout)" method="POST">
+		<h2 class="mb-4 text-center text-xl font-black leading-none sm:text-3xl">Welcome! <span x-text="user"></span></h2>
+
+		<Details />
+
+		<Submit value="Logout" />
+	</form>
+</Layout>

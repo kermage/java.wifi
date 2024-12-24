@@ -1,0 +1,20 @@
+---
+interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<input id={`tab-${id}`} type="radio" x-model="active" value={id} class="hidden" />
+<label
+	for={`tab-${id}`}
+	:class={`{
+    'flex-1 p-4 font-medium border text-center cursor-pointer': true,
+    'border-transparent border-b-gray-200': active !== '${id}',
+    'border-gray-200 border-b-transparent': active === '${id}',
+    'shadow-[0_-2px_1px_0px_theme(colors.brand.green)]': active === '${id}'
+}`}
+>
+	<slot />
+</label>

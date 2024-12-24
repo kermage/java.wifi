@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Omit<HTMLAttributes<'input'>, 'type'> {}
+
+const { props } = Astro;
+---
+
+<input
+	type="submit"
+	class="mt-6 block w-full cursor-pointer appearance-none rounded-sm border-2 border-transparent bg-brand-red px-5 py-3 text-center font-medium uppercase text-white hover:opacity-80 focus:opacity-80"
+	{...props}
+/>

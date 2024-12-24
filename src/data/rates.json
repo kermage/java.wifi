@@ -1,0 +1,22 @@
+[
+  {
+    "uptime": "10 Minutes",
+    "price": "1.00"
+  },
+  {
+    "uptime": "1 Hour",
+    "price": "5.00"
+  },
+  {
+    "uptime": "3 Hours",
+    "price": "10.00"
+  },
+  {
+    "uptime": "8 Hours",
+    "price": "20.00"
+  },
+  {
+    "uptime": "1 Day",
+    "price": "50.00"
+  }
+]

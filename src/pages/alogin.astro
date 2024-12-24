@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Redirect">
+	<meta http-equiv="refresh" content="2; uRl=$(link-redirect)" slot="head" />
+
+	<div class="text-center">
+		<h2 class="mb-6 text-center text-xl font-black leading-none sm:text-3xl">You are logged in</h2>
+
+		<p>
+			If nothing happens, <a
+				href="$(link-redirect)"
+				class="border-b border-brand-blue font-medium text-brand-blue hover:opacity-60 focus:opacity-60">click here</a
+			>.
+		</p>
+	</div>
+</Layout>

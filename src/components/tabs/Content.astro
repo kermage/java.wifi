@@ -1,0 +1,11 @@
+---
+interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div id={`content-${id}`} class="w-full pt-8" x-show=`active === '${id}'` x-cloak>
+	<slot />
+</div>

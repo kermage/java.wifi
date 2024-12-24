@@ -1,0 +1,28 @@
+---
+import Table from '../components/Table.astro';
+import rates from '../data/rates.json';
+---
+
+<Table>
+	<caption class="mb-4 text-center font-bold italic" slot="before">Affordable Voucher Codes</caption>
+
+	<thead>
+		<tr>
+			<th>Uptime</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{
+			rates.map(({ uptime, price }) => (
+				<tr>
+					<td>{uptime}</td>
+					<td>
+						<b>₱{price}</b>
+					</td>
+				</tr>
+			))
+		}
+	</tbody>
+</Table>

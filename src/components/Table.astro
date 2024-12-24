@@ -1,0 +1,17 @@
+---
+
+---
+
+<table class="w-full border-collapse text-center">
+	<slot name="before" />
+	<slot />
+	<slot name="after" />
+</table>
+
+<style>
+	table :global(th),
+	table :global(td) {
+		padding: 0.625em;
+		border: 1px solid #bdbdbd;
+	}
+</style>

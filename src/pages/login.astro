@@ -1,0 +1,82 @@
+---
+import Field from '../components/form/Field.astro';
+import Submit from '../components/form/Submit.astro';
+import TabContent from '../components/tabs/Content.astro';
+import TabTrigger from '../components/tabs/Trigger.astro';
+import TabsWrapper from '../components/tabs/Wrapper.astro';
+import Layout from '../layouts/Layout.astro';
+import Rates from '../partials/Rates.astro';
+---
+
+<Layout
+	title="Login"
+	x-data="hsLogin"
+	data-username="$(username)"
+	data-chap-challenge="$(chap-challenge)"
+	data-chap-id="$(chap-id)"
+	data-error="$(error)"
+	data-mac="$(mac)"
+	data-trial="$(trial)"
+>
+	<TabsWrapper active="login">
+		<TabTrigger id="login">Login</TabTrigger>
+		<TabTrigger id="rates">Rates</TabTrigger>
+
+		<TabContent id="login">
+			<form action="$(link-login-only)" method="POST" @submit="processLogin">
+				<p
+					class="mb-4 text-center font-bold italic"
+					x-text="useVoucher ? 'Enter purchased code' : 'Enter account details'"
+				>
+				</p>
+
+				<div class="my-4">
+					<label for="username" x-show="!useVoucher">Username</label>
+					<Field id="username" x-model="username" name="username" type="text" :value="username" required autofocus />
+				</div>
+
+				<div class="my-4" x-show="!useVoucher">
+					<label for="password">Password</label>
+					<Field
+						id="password"
+						x-model="password"
+						name="password"
+						:type="useVoucher ? 'hidden' : 'password'"
+						:required="!useVoucher"
+					/>
+				</div>
+
+				<div class="my-4 text-center">
+					<label
+						for="type"
+						class="inline-block cursor-pointer border-b border-brand-blue font-bold text-brand-blue hover:opacity-60 focus:opacity-60"
+						x-text="useVoucher ? 'Use VIP Account' : 'Use Voucher Code'"
+					>
+						Use VIP Account
+					</label>
+					<input id="type" type="checkbox" :checked="error" @change="useVoucher = !useVoucher" class="hidden" />
+				</div>
+
+				<input type="hidden" name="dst" value="$(link-orig)" />
+				<input type="hidden" name="popup" value="true" />
+				<Submit value="Submit" />
+			</form>
+
+			<template x-if="error">
+				<p class="mt-4 text-center text-sm italic" x-text="error"></p>
+			</template>
+		</TabContent>
+
+		<TabContent id="rates">
+			<Rates />
+
+			<template x-if="trial">
+				<form action="$(link-login-only)" method="GET">
+					<input type="hidden" name="dst" value="$(link-orig)" />
+					<input type="hidden" name="username" :value="`T-${mac}`" />
+					<Submit value="Free 15 minutes" />
+				</form>
+			</template>
+		</TabContent>
+	</TabsWrapper>
+</Layout>

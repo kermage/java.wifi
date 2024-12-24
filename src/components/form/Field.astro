@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'input'> {}
+
+const { props } = Astro;
+---
+
+<input
+	class="block w-full appearance-none rounded-none border-b border-gray-400 bg-transparent py-2 outline-none focus:border-brand-green focus:shadow-[0_1px_0_0_theme(colors.brand.green)]"
+	{...props}
+/>
